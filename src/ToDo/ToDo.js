@@ -5,10 +5,10 @@ const ToDo = (props) => (
     <div>ToDo</div>
 )
 const mapStateToProps = state => ({
-
+    _tasksArray: state.todo.tasks
 })
 
 const mapDispatchToProps = dispatch => ({
-    
+
 })
 export default connect()(ToDo)
