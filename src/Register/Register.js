@@ -8,7 +8,8 @@ import Paper from 'material-ui/Paper'
 import {
     changeEmailAction,
     changePasswordAction,
-    changeRepeatPasswordAction
+    changeRepeatPasswordAction,
+    singUpAsyncAction
 } from '../state/register';
 
 const style = {
@@ -40,18 +41,20 @@ class Register extends React.Component {
                 <Input
                     floatingLabelText='Password'
                     hintText='Password'
+                    type='Password'
                     label={this.props._password}
                     onChange={this.props._changePasswordAction}
                 />
                 <Input
                     floatingLabelText='Repeat Password'
                     hintText='Repeat Password'
+                    type='Password'
                     label={this.props._repeatPassword}
                     onChange={this.props._changeRepeatPasswordAction}
                 />
                 <Button
                     style={style.button}
-                    onClick={() => { }}
+                    onClick={this.props._singUpAsyncAction}
                     label='Sing Up'
                     primary={true}
                 />
@@ -70,7 +73,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     _changeEmailAction: (event) => dispatch(changeEmailAction(event.target.value)),
     _changePasswordAction: (event) => dispatch(changePasswordAction(event.target.value)),
-    _changeRepeatPasswordAction: (event) => dispatch(changeRepeatPasswordAction(event.target.value))
+    _changeRepeatPasswordAction: (event) => dispatch(changeRepeatPasswordAction(event.target.value)),
+    _singUpAsyncAction: () => dispatch(singUpAsyncAction())
 })
 
 export default connect(

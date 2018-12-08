@@ -1,3 +1,5 @@
+import { auth } from '../firebaseConfig'
+
 const EMAIL = 'register/EMAIL'
 const PASSWORD = 'register/PASSWORD'
 const REPEAT_PASSWORD = 'register/REPEAT_PASSWORD'
@@ -6,6 +8,17 @@ const INITIAL_STATE = {
     email: '',
     password: '',
     repeatPassword: ''
+}
+
+export const singUpAsyncAction = () => (dispatch, getState) => {
+    const { register: { email, password, repeatPassword } } = getState()
+    password === repeatPassword ?
+        auth.createUserWithEmailAndPassword(email, password)
+            .catch(error => {
+                alert(`Email or password is incorrect. If you are not registered, do it!`)
+            })
+        :
+        alert('Password incorrect')
 }
 
 export const changeEmailAction = (value) => ({
