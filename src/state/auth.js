@@ -3,7 +3,8 @@ const PASSWORD = 'auth/PASSWORD'
 
 const INITIAL_STATE = {
     email: '',
-    password: ''
+    password: '',
+    isLoginUser: false,
 }
 
 export const changeEmailLoginAction = (value) => ({
