@@ -1,16 +1,30 @@
 import React from 'react'
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import { connect } from 'react-redux'
+import { logOutAsyncAction } from '../state/auth';
+
+const styles = {
+    title: {
+        cursor: 'pointer',
+    },
+};
 
 class Navigation extends React.Component {
     render() {
         return (
             <div>
                 <AppBar
-                    title="Homework 6 fddl6 Krystian Pietron"
-                    iconClassNameRight="muidocs-icon-navigation-expand-more"
+                    title={<span style={styles.title}>"Homework 6 fddl6 Krystian Pietron"</span>}
+                    iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+                    onLeftIconButtonClick={this.props._logOut}
                 />
             </div>
         )
     }
 }
-export default Navigation
+const mapDispatchToProps = dispatch => ({
+    _logOut: () => dispatch(logOutAsyncAction())
+})
+export default connect(null, mapDispatchToProps)(Navigation)

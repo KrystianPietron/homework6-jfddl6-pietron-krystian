@@ -1,4 +1,4 @@
-import { auth, googleProvider, database } from '../firebaseConfig'
+import { auth, googleProvider} from '../firebaseConfig'
 
 const EMAIL = 'auth/EMAIL'
 const PASSWORD = 'auth/PASSWORD'
@@ -11,6 +11,30 @@ const INITIAL_STATE = {
     isLoginUser: false,
 }
 
+export const initAuthLoginAsyncAction = () => (dispatch, getState) => {
+    auth.onAuthStateChanged(
+        user => {
+            if (user) {
+                dispatch(logInAction(user))
+            } else {
+                dispatch(logOutAction())
+            }
+        }
+    )
+}
+
+export const logInAsyncAction = () => (dispatch, getState) => {
+    const { auth: { email, password } } = getState()
+    auth.signInWithEmailAndPassword(email, password)
+        .catch(error => {
+            alert(`Email or password is incorrect. If you are not registered, do it!`)
+        })
+}
+
+export const logOutAsyncAction = () => (dispatch, getState) => {
+    auth.signOut()
+}
+
 export const changeEmailLoginAction = (value) => ({
     type: EMAIL,
     value
@@ -21,8 +45,9 @@ export const changePasswordLoginAction = (value) => ({
     value
 })
 
-const logInAction = () => ({
-    type: LOG_IN
+const logInAction = (user) => ({
+    type: LOG_IN,
+    user
 })
 
 const logOutAction = () => ({
