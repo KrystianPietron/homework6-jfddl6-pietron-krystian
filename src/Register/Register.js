@@ -30,17 +30,20 @@ class Register extends React.Component {
                 <Input
                     floatingLabelText='Email'
                     hintText='Email'
-                    onChange={() => { }}
+                    label={this.props._email}
+                    onChange={this.props._changeEmailAction}
                 />
                 <Input
                     floatingLabelText='Password'
                     hintText='Password'
-                    onChange={() => { }}
+                    label={this.props._password}
+                    onChange={this.props._changePasswordAction}
                 />
                 <Input
-                    floatingLabelText='Return Password'
-                    hintText='Return Password'
-                    onChange={() => { }}
+                    floatingLabelText='Repeat Password'
+                    hintText='Repeat Password'
+                    label={this.props._repeatPassword}
+                    onChange={this.props._changeRepeatPasswordAction}
                 />
                 <Button
                     style={style.button}
