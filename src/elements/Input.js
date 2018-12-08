@@ -7,6 +7,8 @@ const Input = (props) => (
         onChange={props.onChange}
         style={props.style}
         hintText={props.hintText}
+        floatingLabelText={props.floatingLabelText}
+        type={props.type}
     />
 )
 export default Input
