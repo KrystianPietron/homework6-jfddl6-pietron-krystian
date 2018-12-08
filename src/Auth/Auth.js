@@ -56,7 +56,8 @@ class Auth extends React.Component {
 }
 
 const mapStateToProps = state => ({
-
+    _password: state.auth.password,
+    _email: state.auth.email
 })
 
 const mapDispatchToProps = dispatch => ({
