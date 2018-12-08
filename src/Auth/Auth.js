@@ -3,6 +3,10 @@ import Button from '../elements/Button'
 import Input from '../elements/Input'
 import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper'
+import {
+    changeEmailLoginAction,
+    changePasswordLoginAction
+} from '../state/auth';
 
 const style = {
     paper: {
@@ -26,17 +30,17 @@ class Auth extends React.Component {
             >
                 <h3>Default <br></br>Email:  example@example.com <br></br> Password:  example </h3>
                 <Input
-                    label='Email'
+                    label={this.props._email}
                     floatingLabelText='Email'
                     hintText='Email'
-                    onChange={() => { }}
+                    onChange={this.props._changeEmailLoginAction}
                 />
                 <Input
-                    label='Password'
+                    label={this.props._password}
                     floatingLabelText='Password'
                     hintText='Password'
                     type='Password'
-                    onChange={() => { }}
+                    onChange={this.props._changePasswordLoginAction}
                 />
                 <Button
                     style={style.button}
@@ -61,6 +65,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+    _changeEmailLoginAction: (event) => dispatch(changeEmailLoginAction(event.target.value)),
+    _changePasswordLoginAction: (event) => dispatch(changePasswordLoginAction(event.target.value))
 
 })
 

@@ -5,7 +5,11 @@ import { connect } from 'react-redux'
 import Button from '../elements/Button'
 import Input from '../elements/Input'
 import Paper from 'material-ui/Paper'
-import { changeEmailAction, changePasswordAction, changeRepeatPasswordAction } from '../state/register';
+import {
+    changeEmailAction,
+    changePasswordAction,
+    changeRepeatPasswordAction
+} from '../state/register';
 
 const style = {
     paper: {
