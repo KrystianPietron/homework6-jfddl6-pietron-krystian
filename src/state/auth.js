@@ -1,3 +1,5 @@
+import { auth, googleProvider, database } from '../firebaseConfig'
+
 const EMAIL = 'auth/EMAIL'
 const PASSWORD = 'auth/PASSWORD'
 const LOG_IN = 'auth/LOG_IN'
@@ -19,13 +21,17 @@ export const changePasswordLoginAction = (value) => ({
     value
 })
 
-export const logInAction = () => ({
+const logInAction = () => ({
     type: LOG_IN
 })
 
-export const logOutAction = () => ({
+const logOutAction = () => ({
     type: LOG_OUT
 })
+
+export const logInByGoogleButtonAction = () => (dispatch, getState) => {
+    auth.signInWithPopup(googleProvider)
+}
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {

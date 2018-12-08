@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper'
 import {
     changeEmailLoginAction,
-    changePasswordLoginAction
+    changePasswordLoginAction,
+    logInByGoogleButtonAction
 } from '../state/auth';
 
 const style = {
@@ -52,7 +53,7 @@ class Auth extends React.Component {
                     style={style.button}
                     label='Login By Google'
                     primary={true}
-                    onClick={() => { }}
+                    onClick={this.props._logInByGoogleButtonAction}
                 />
             </Paper>
         )
@@ -66,8 +67,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     _changeEmailLoginAction: (event) => dispatch(changeEmailLoginAction(event.target.value)),
-    _changePasswordLoginAction: (event) => dispatch(changePasswordLoginAction(event.target.value))
-
+    _changePasswordLoginAction: (event) => dispatch(changePasswordLoginAction(event.target.value)),
+    _logInByGoogleButtonAction: () => dispatch(logInByGoogleButtonAction())
 })
 
 export default connect(
