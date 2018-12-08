@@ -4,6 +4,7 @@ import Input from '../elements/Input'
 import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper'
 import Register from '../Register'
+import icon from '../img/search.svg'
 import {
     changeEmailLoginAction,
     changePasswordLoginAction,
@@ -20,9 +21,13 @@ const style = {
         flexDirection: 'column',
         alignItems: 'center',
     },
+    paperElement: {
+        margin: 30,
+        padding: 10
+    },
     button: {
         margin: 15,
-        width:230,
+        width: 230,
     }
 }
 
@@ -39,10 +44,12 @@ class Auth extends React.Component {
                     {this.props.children}
                 </div>
                 :
-                <Paper>
+                <Paper
+                    style={style.paperElement}>
                     <Paper
                         style={style.paper}
                     >
+                        <h2>Login!</h2>
                         <h3>Default <br></br>Email:  example@example.com <br></br> Password:  example </h3>
                         <Input
                             label={this.props._email}
@@ -60,14 +67,21 @@ class Auth extends React.Component {
                         <Button
                             style={style.button}
                             label='Login'
-                            primary={true}
                             onClick={this.props._logInAsyncAction}
                         />
                         <Button
                             style={style.button}
                             label='Login By Google'
-                            primary={true}
                             onClick={this.props._logInByGoogleButtonAction}
+                            icon={
+                                <img
+                                    src={icon}
+                                    style={{
+                                        maxHeight: '100%',
+                                        maxWidth: '10%'
+                                    }}
+                                />
+                            }
                         />
                     </Paper>
                     <div>

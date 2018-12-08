@@ -11,19 +11,15 @@ const styles = {
     },
 };
 
-class Navigation extends React.Component {
-    render() {
-        return (
-            <div>
-                <AppBar
-                    title={<span style={styles.title}>"Homework 6 fddl6 Krystian Pietron"</span>}
-                    iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-                    onLeftIconButtonClick={this.props._logOut}
-                />
-            </div>
-        )
-    }
-}
+const Navigation = (props) => (
+    <div>
+        <AppBar
+            title={<span style={styles.title}>"Homework 6 fddl6 Krystian Pietron"</span>}
+            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+            onLeftIconButtonClick={props._logOut}
+        />
+    </div>
+)
 const mapDispatchToProps = dispatch => ({
     _logOut: () => dispatch(logOutAsyncAction())
 })

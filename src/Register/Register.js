@@ -22,46 +22,42 @@ const style = {
     },
     button: {
         margin: 15,
-        width: 130,
+        width: 230,
     }
 }
 
-class Register extends React.Component {
-    render() {
-        return (
-            <Paper
-                style={style.paper}
-            >
-                <Input
-                    floatingLabelText='Email'
-                    hintText='Email'
-                    label={this.props._email}
-                    onChange={this.props._changeEmailAction}
-                />
-                <Input
-                    floatingLabelText='Password'
-                    hintText='Password'
-                    type='Password'
-                    label={this.props._password}
-                    onChange={this.props._changePasswordAction}
-                />
-                <Input
-                    floatingLabelText='Repeat Password'
-                    hintText='Repeat Password'
-                    type='Password'
-                    label={this.props._repeatPassword}
-                    onChange={this.props._changeRepeatPasswordAction}
-                />
-                <Button
-                    style={style.button}
-                    onClick={this.props._singUpAsyncAction}
-                    label='Sing Up'
-                    primary={true}
-                />
-            </Paper>
-        )
-    }
-}
+const Register = (props) => (
+    <Paper
+        style={style.paper}
+    >
+        <h2>Sing UP!</h2>
+        <Input
+            floatingLabelText='Email'
+            hintText='Email'
+            label={props._email}
+            onChange={props._changeEmailAction}
+        />
+        <Input
+            floatingLabelText='Password'
+            hintText='Password'
+            type='Password'
+            label={props._password}
+            onChange={props._changePasswordAction}
+        />
+        <Input
+            floatingLabelText='Repeat Password'
+            hintText='Repeat Password'
+            type='Password'
+            label={props._repeatPassword}
+            onChange={props._changeRepeatPasswordAction}
+        />
+        <Button
+            style={style.button}
+            onClick={props._singUpAsyncAction}
+            label='Sing Up'
+        />
+    </Paper>
+)
 
 const mapStateToProps = state => ({
     _email: state.register.email,

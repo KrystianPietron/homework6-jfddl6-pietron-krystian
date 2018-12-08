@@ -7,6 +7,7 @@ const Button = (props) => (
         onClick={props.onClick}
         style={props.style}
         primary={props.primary}
+        icon={props.icon}
     />
 )
 export default Button
