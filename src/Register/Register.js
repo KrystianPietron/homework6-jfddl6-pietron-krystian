@@ -1,4 +1,7 @@
 import React from 'react'
+
+import { connect } from 'react-redux'
+
 import Button from '../elements/Button'
 import Input from '../elements/Input'
 import Paper from 'material-ui/Paper'
@@ -48,4 +51,16 @@ class Register extends React.Component {
         )
     }
 }
-export default Register
+
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps)
+    (Register)

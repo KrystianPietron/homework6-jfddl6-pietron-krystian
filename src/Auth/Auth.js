@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../elements/Button'
 import Input from '../elements/Input'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper'
 
 const style = {
@@ -54,4 +54,16 @@ class Auth extends React.Component {
         )
     }
 }
-export default Auth
+
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps)
+    (Auth)
