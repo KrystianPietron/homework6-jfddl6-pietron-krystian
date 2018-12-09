@@ -33,13 +33,12 @@ const Register = (props) => (
         <h2>Sing UP!</h2>
         <Input
             floatingLabelText='Email'
-            hintText='Email'
             label={props._email}
             onChange={props._changeEmailAction}
         />
         <Input
             floatingLabelText='Password'
-            hintText='Password'
+
             type='Password'
             label={props._password}
             onChange={props._changePasswordAction}

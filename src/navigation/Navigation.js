@@ -1,7 +1,7 @@
 import React from 'react'
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import NavigationClose from 'material-ui/svg-icons/action/power-settings-new';
 import { connect } from 'react-redux'
 import { logOutAsyncAction } from '../state/auth';
 

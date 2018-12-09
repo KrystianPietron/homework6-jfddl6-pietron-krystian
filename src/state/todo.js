@@ -3,6 +3,7 @@ import { database } from '../firebaseConfig'
 const TASK_VALUE = 'todo/TASK_VALUE'
 const TASK_COMPLETED = 'todo/TASK_COMPLETED'
 const LOAD_TASKS = 'todo/LOAD_TASKS'
+const CLEAR_TASK = 'todo/CLEAR_TASK'
 
 const INITIAL_STATE = {
     tasks: [],
@@ -50,6 +51,7 @@ export const addTaskAction = () => (dispatch, getState) => {
         task,
         isCompleted: false
     })
+    dispatch(clearTaskAction())
 }
 
 export const changeTaskValue = (value) => ({
@@ -60,6 +62,10 @@ export const changeTaskValue = (value) => ({
 export const taskIsCompletedAction = (isCompleted) => ({
     type: TASK_COMPLETED,
     isCompleted
+})
+
+const clearTaskAction = () => ({
+    type: CLEAR_TASK,
 })
 
 const loadTasksAction = (data) => ({
@@ -83,6 +89,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 tasks: action.data
+            }
+            case CLEAR_TASK:
+            return {
+                ...state,
+                task: ''
             }
         default:
             return state

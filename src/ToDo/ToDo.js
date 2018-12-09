@@ -34,7 +34,6 @@ const style = {
 class ToDo extends React.Component {
     componentWillMount() {
         this.props._loadTaskFromDbAsyncAction()
-        console.log(this.props._tasksArray)
     }
 
     componentWillUnmount() {
@@ -49,9 +48,8 @@ class ToDo extends React.Component {
                     style={style.paperElement}>
                     <Input
                         floatingLabelText='Add Task'
-                        label='Add Task'
+                        label={this.props._task}
                         onChange={this.props._changeTaskValue}
-                        hintText='Add Task'
                         style={style.input}
                     />
                     <Button
@@ -65,7 +63,6 @@ class ToDo extends React.Component {
                     style={style.paperElement}>
                     {this.props._tasksArray.map(
                         (element, index) => (
-                            console.log(element),
                             <ListItem
                                 key={element.id}
                                 primaryText={element.task}
