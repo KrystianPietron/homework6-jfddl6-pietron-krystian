@@ -11,7 +11,7 @@ import {
     updateTask,
     deleteTask
 } from '../state/todo'
-import { ListItem } from 'material-ui';
+import { ListItem, LinearProgress } from 'material-ui';
 import IconButton from 'material-ui/IconButton'
 import DeleteIcon from 'material-ui/svg-icons/action/delete'
 import ActionDone from 'material-ui/svg-icons/action/done'
@@ -24,7 +24,7 @@ const style = {
     },
     paperElement: {
         margin: 10,
-        padding: 30
+        padding: 10
     },
     input: {
         width: '70%'
@@ -69,6 +69,12 @@ class ToDo extends React.Component {
                             <ListItem
                                 key={element.id}
                                 primaryText={element.task}
+                                style={
+                                    element.isCompleted === true ?
+                                        { textDecoration: 'line-through ' }
+                                        :
+                                        { textDecoration: ' none' }
+                                }
                                 rightIconButton={
                                     <div>
                                         <IconButton
