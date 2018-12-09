@@ -2,6 +2,7 @@ import { database } from '../firebaseConfig'
 
 const TASK_VALUE = 'todo/TASK_VALUE'
 const TASK_COMPLETED = 'todo/TASK_COMPLETED'
+const LOAD_TASKS = 'todo/LOAD_TASKS'
 
 const INITIAL_STATE = {
     tasks: [],
@@ -11,19 +12,20 @@ const INITIAL_STATE = {
 
 export const loadTextFromDbAsyncAction = () => (dispatch, getState) => {
     const { auth: { user: { uid } }, todo: { tasks } } = getState()
-    database.ref(`${uid}/tasks/`).once(
+    database.ref(`${uid}/tasks/`).on(
         'value',
         snapshot => {
-            let items = snapshot.val();
-            for (let item in items) {
-                tasks.push({
-                    id: item,
-                    task: items[item].task,
-                    isCompleted: items[item].isCompleted
-                });
-            }
-
+            const array = Object.entries(snapshot.val())
+            const tasksList = array.map(entry => ({
+                ...entry[1]
+            }))
+            dispatch(loadTasksAction(tasksList))
         });
+}
+
+export const stopSyncingFromDbAsyncAction = () => (dispatch, getState) => {
+    const { auth: { user: { uid } } } = getState()
+    database.ref(`${uid}/tasks/`).off()
 }
 
 export const addTaskAction = () => (dispatch, getState) => {
@@ -38,8 +40,14 @@ export const changeTaskValue = (value) => ({
     type: TASK_VALUE,
     value
 })
+
 export const taskIsCompletedAction = () => ({
     type: TASK_COMPLETED
+})
+
+const loadTasksAction = (data) => ({
+    type: LOAD_TASKS,
+    data
 })
 
 export default (state = INITIAL_STATE, action) => {
@@ -53,6 +61,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isCompleted: !state.isCompleted
+            }
+        case LOAD_TASKS:
+            return {
+                ...state,
+                tasks: action.data
             }
         default:
             return state
