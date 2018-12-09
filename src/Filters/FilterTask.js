@@ -47,11 +47,18 @@ const FilterTask = (props) => (
             />
         </Paper>
         <Paper style={style.paperElement}>
-            {props._allTasks.filter((element) => element.isCompleted === props._arg)
-                .map((el) => (<ListItem
-                    key={el.id}
-                    primaryText={el.task}
-                />))}
+            {props._arg === null ?
+                props._allTasks.filter((element) => element)
+                    .map((el) => (<ListItem
+                        key={el.id}
+                        primaryText={el.task}
+                    />))
+                :
+                props._allTasks.filter((element) => element.isCompleted === props._arg)
+                    .map((el) => (<ListItem
+                        key={el.id}
+                        primaryText={el.task}
+                    />))}
         </Paper>
     </Paper>
 )
