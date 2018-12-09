@@ -14,6 +14,8 @@ import {
 import { ListItem } from 'material-ui';
 import IconButton from 'material-ui/IconButton'
 import DeleteIcon from 'material-ui/svg-icons/action/delete'
+import ActionDone from 'material-ui/svg-icons/action/done'
+import ActionDoneBorder from 'material-ui/svg-icons/content/clear'
 
 const style = {
     paper: {
@@ -23,6 +25,9 @@ const style = {
     paperElement: {
         margin: 10,
         padding: 30
+    },
+    input: {
+        width: '70%'
     }
 }
 
@@ -47,6 +52,7 @@ class ToDo extends React.Component {
                         label='Add Task'
                         onChange={this.props._changeTaskValue}
                         hintText='Add Task'
+                        style={style.input}
                     />
                     <Button
                         label='Add Task'
@@ -64,31 +70,29 @@ class ToDo extends React.Component {
                                 key={element.id}
                                 primaryText={element.task}
                                 rightIconButton={
-                                    <IconButton>
-                                        <DeleteIcon
-                                            onClick={(event) => {
-                                                event.preventDefault()
-                                                // this.deleteTask(product)
+                                    <div>
+                                        <IconButton
+                                            onClick={() => {
                                                 this.props._updateTask(element.id, element.isCompleted)
                                             }
                                             }
-                                        />
-                                    </IconButton>
-                                    // <IconButton
-                                    // onClick={(event) => {
-                                    //     event.preventDefault()
-                                    //     this.isFavorite(product)
-                                    // }
-                                    // }
-                                    // >
-                                    //     {product.isFavorite === true ?
-                                    //     <ActionFavorite />
-                                    //     :
-                                    //     <ActionFavoriteBorder />
-                                    // }
-                                    // </IconButton>
+                                        >
+                                            {element.isCompleted === true ?
+                                                <ActionDone />
+                                                :
+                                                <ActionDoneBorder />
+                                            }
+                                        </IconButton>
+                                        <IconButton>
+                                            <DeleteIcon
+                                                onClick={() => {
+                                                    this.props._deleteTask(element.id)
+                                                }
+                                                }
+                                            />
+                                        </IconButton>
+                                    </div>
                                 }
-
                             > </ListItem>
                         ))
                     }
