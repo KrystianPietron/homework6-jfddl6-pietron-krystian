@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     email: '',
     password: '',
     isLoginUser: false,
+    user: null
 }
 
 export const initAuthLoginAsyncAction = () => (dispatch, getState) => {
@@ -63,7 +64,8 @@ export default (state = INITIAL_STATE, action) => {
         case LOG_IN:
             return {
                 ...state,
-                isLoginUser: true
+                isLoginUser: true,
+                user: action.user
             }
         case LOG_OUT:
             return {

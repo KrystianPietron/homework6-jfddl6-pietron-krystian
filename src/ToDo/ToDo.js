@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 import Button from '../elements/Button'
 import Input from '../elements/Input'
 import Paper from 'material-ui/Paper'
-import { changeTaskValue } from '../state/todo'
+import {
+    changeTaskValue,
+    addTaskAction,
+    loadTextFromDbAsyncAction
+} from '../state/todo'
 
 const style = {
     paper: {
@@ -15,37 +19,46 @@ const style = {
         padding: 30
     }
 }
-const ToDo = (props) => (
-    <Paper
-        style={style.paper}>
-        <Paper
-            style={style.paperElement}>
-            <Input
-                floatingLabelText='Add Task'
-                label='Add Task'
-                onChange={props._changeTaskValue}
-                hintText='Add Task'
-            />
-            <Button
-                label='Add Task'
-                onClick={() => { }}
-                primary={true}
-            />
-            {console.log(props._task)}
-        </Paper>
-        <Paper
-            style={style.paperElement}>
-            {props._tasksArray.map((element, index) => <div>{index}. {element.task}</div>)}
-        </Paper>
-    </Paper>
-)
+class ToDo extends React.Component {
+    componentWillMount() {
+        this.props._loadTaskFromDbAsyncAction()
+    }
+    render() {
+        return (
+            <Paper
+                style={style.paper}>
+                <Paper
+                    style={style.paperElement}>
+                    <Input
+                        floatingLabelText='Add Task'
+                        label='Add Task'
+                        onChange={this.props._changeTaskValue}
+                        hintText='Add Task'
+                    />
+                    <Button
+                        label='Add Task'
+                        onClick={this.props._addTaskAction}
+                        primary={true}
+                    />
+                    {console.log(this.props._tasksArray)}
+                </Paper>
+                <Paper
+                    style={style.paperElement}>
+                    {this.props._tasksArray.map((element, index) => <div>{index}. {element.task}</div>)}
+                </Paper>
+            </Paper>
+        )
+    }
+}
 const mapStateToProps = state => ({
     _tasksArray: state.todo.tasks,
-    _task: state.todo.task
+    _task: state.todo.task,
 })
 
 const mapDispatchToProps = dispatch => ({
-    _changeTaskValue: (event) => dispatch(changeTaskValue(event.target.value))
+    _changeTaskValue: (event) => dispatch(changeTaskValue(event.target.value)),
+    _addTaskAction: () => dispatch(addTaskAction()),
+    _loadTaskFromDbAsyncAction: () => dispatch(loadTextFromDbAsyncAction())
 
 })
 export default connect(
