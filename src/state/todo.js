@@ -11,16 +11,32 @@ const INITIAL_STATE = {
 }
 
 export const loadTextFromDbAsyncAction = () => (dispatch, getState) => {
-    const { auth: { user: { uid } }, todo: { tasks } } = getState()
+    const { auth: { user: { uid } } } = getState()
     database.ref(`${uid}/tasks/`).on(
         'value',
         snapshot => {
-            const array = Object.entries(snapshot.val())
+            const array = Object.entries(snapshot.val() || '')
             const tasksList = array.map(entry => ({
-                ...entry[1]
+                id: entry[0],
+                task: entry[1].task,
+                isCompleted: entry[1].isCompleted
             }))
             dispatch(loadTasksAction(tasksList))
         });
+}
+
+export const updateTask = (data, data2) => (dispatch, getState) => {
+    const { auth: { user: { uid } } } = getState()
+    console.log('updateTask ', data)
+    database.ref(`${uid}/tasks/${data}`).update({
+        "isCompleted": !data2
+    })
+};
+
+export const deleteTask = (data) => (dispatch, getState) => {
+    const { auth: { user: { uid } } } = getState()
+    console.log('updateTask ', data)
+    database.ref(`${uid}/tasks/${data}`).remove()
 }
 
 export const stopSyncingFromDbAsyncAction = () => (dispatch, getState) => {
@@ -41,8 +57,9 @@ export const changeTaskValue = (value) => ({
     value
 })
 
-export const taskIsCompletedAction = () => ({
-    type: TASK_COMPLETED
+export const taskIsCompletedAction = (isCompleted) => ({
+    type: TASK_COMPLETED,
+    isCompleted
 })
 
 const loadTasksAction = (data) => ({

@@ -7,9 +7,13 @@ import {
     changeTaskValue,
     addTaskAction,
     loadTextFromDbAsyncAction,
-    stopSyncingFromDbAsyncAction
+    stopSyncingFromDbAsyncAction,
+    updateTask,
+    deleteTask
 } from '../state/todo'
 import { ListItem } from 'material-ui';
+import IconButton from 'material-ui/IconButton'
+import DeleteIcon from 'material-ui/svg-icons/action/delete'
 
 const style = {
     paper: {
@@ -54,13 +58,39 @@ class ToDo extends React.Component {
                 <Paper
                     style={style.paperElement}>
                     {this.props._tasksArray.map(
-                        (element, index) =>
+                        (element, index) => (
+                            console.log(element),
                             <ListItem
                                 key={element.id}
                                 primaryText={element.task}
-                                // rightIconButton={
-                                // }
-                            > </ListItem>)
+                                rightIconButton={
+                                    <IconButton>
+                                        <DeleteIcon
+                                            onClick={(event) => {
+                                                event.preventDefault()
+                                                // this.deleteTask(product)
+                                                this.props._updateTask(element.id, element.isCompleted)
+                                            }
+                                            }
+                                        />
+                                    </IconButton>
+                                    // <IconButton
+                                    // onClick={(event) => {
+                                    //     event.preventDefault()
+                                    //     this.isFavorite(product)
+                                    // }
+                                    // }
+                                    // >
+                                    //     {product.isFavorite === true ?
+                                    //     <ActionFavorite />
+                                    //     :
+                                    //     <ActionFavoriteBorder />
+                                    // }
+                                    // </IconButton>
+                                }
+
+                            > </ListItem>
+                        ))
                     }
                 </Paper>
             </Paper>
@@ -76,7 +106,9 @@ const mapDispatchToProps = dispatch => ({
     _changeTaskValue: (event) => dispatch(changeTaskValue(event.target.value)),
     _addTaskAction: () => dispatch(addTaskAction()),
     _loadTaskFromDbAsyncAction: () => dispatch(loadTextFromDbAsyncAction()),
-    _stopSyncingFromDbAsyncAction: () => dispatch(stopSyncingFromDbAsyncAction())
+    _stopSyncingFromDbAsyncAction: () => dispatch(stopSyncingFromDbAsyncAction()),
+    _updateTask: (data, data2) => dispatch(updateTask(data, data2)),
+    _deleteTask: (data) => dispatch(deleteTask(data))
 
 })
 export default connect(
