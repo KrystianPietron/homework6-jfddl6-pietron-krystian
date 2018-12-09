@@ -11,7 +11,7 @@ import {
     updateTask,
     deleteTask
 } from '../state/todo'
-import { ListItem, LinearProgress } from 'material-ui';
+import { ListItem } from 'material-ui';
 import IconButton from 'material-ui/IconButton'
 import DeleteIcon from 'material-ui/svg-icons/action/delete'
 import ActionDone from 'material-ui/svg-icons/action/done'

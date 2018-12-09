@@ -4,11 +4,15 @@ import thunk from 'redux-thunk'
 import todo from './state/todo'
 import auth from './state/auth'
 import register from './state/register'
+import filterTask from './state/filterTask'
+import search from './state/search'
 
 const reducer = combineReducers({
-    todo,
     auth,
+    todo,
+    search,
     register,
+    filterTask,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

@@ -10,12 +10,17 @@ const style = {
         margin: 30,
         padding: 10
     },
+    input: {
+        width: '70%'
+    }
 }
+
 const Search = (props) => (
     <Paper
         style={style.paper}
     >
         <Input
+            style={style.input}
             floatingLabelText='Search Task'
             onChange={() => { }}
         />

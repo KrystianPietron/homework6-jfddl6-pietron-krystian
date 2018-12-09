@@ -28,7 +28,6 @@ export const loadTextFromDbAsyncAction = () => (dispatch, getState) => {
 
 export const updateTask = (data, data2) => (dispatch, getState) => {
     const { auth: { user: { uid } } } = getState()
-    console.log('updateTask ', data)
     database.ref(`${uid}/tasks/${data}`).update({
         "isCompleted": !data2
     })
@@ -36,7 +35,6 @@ export const updateTask = (data, data2) => (dispatch, getState) => {
 
 export const deleteTask = (data) => (dispatch, getState) => {
     const { auth: { user: { uid } } } = getState()
-    console.log('updateTask ', data)
     database.ref(`${uid}/tasks/${data}`).remove()
 }
 
@@ -90,7 +88,7 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 tasks: action.data
             }
-            case CLEAR_TASK:
+        case CLEAR_TASK:
             return {
                 ...state,
                 task: ''
