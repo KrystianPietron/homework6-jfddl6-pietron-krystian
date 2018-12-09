@@ -26,6 +26,7 @@ const style = {
 const FilterTask = (props) => (
     <Paper
         style={style.paper}>
+        <h2> Filter task COMPLETED / UNCOMPLETED / ALL</h2>
         <Paper style={style.paperElement}>
             <Button
                 label='ALL TASK'

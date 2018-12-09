@@ -28,6 +28,10 @@ const style = {
     },
     input: {
         width: '70%'
+    },
+    button: {
+        margin: 10,
+        width: '20%'
     }
 }
 
@@ -44,6 +48,7 @@ class ToDo extends React.Component {
         return (
             <Paper
                 style={style.paper}>
+                <h2> List all tasks</h2>
                 <Paper
                     style={style.paperElement}>
                     <Input
@@ -53,6 +58,7 @@ class ToDo extends React.Component {
                         style={style.input}
                     />
                     <Button
+                        style={style.button}
                         label='Add Task'
                         onClick={this.props._addTaskAction}
                         primary={true}
