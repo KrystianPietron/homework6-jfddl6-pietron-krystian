@@ -53,9 +53,9 @@ class ToDo extends React.Component {
                     style={style.paperElement}>
                     <Input
                         floatingLabelText='Add Task'
-                        label={this.props._task}
                         onChange={this.props._changeTaskValue}
                         style={style.input}
+                        value={this.props._task}
                     />
                     <Button
                         style={style.button}
@@ -63,7 +63,6 @@ class ToDo extends React.Component {
                         onClick={this.props._addTaskAction}
                         primary={true}
                     />
-                    {}
                 </Paper>
                 <Paper
                     style={style.paperElement}>

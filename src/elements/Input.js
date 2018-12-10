@@ -9,6 +9,7 @@ const Input = (props) => (
         hintText={props.hintText}
         floatingLabelText={props.floatingLabelText}
         type={props.type}
+        value={props.value}
     />
 )
 export default Input
